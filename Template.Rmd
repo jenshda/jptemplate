@@ -1,0 +1,39 @@
+---
+author: Jens Halford Dyster-Aas
+date: "`r format(Sys.Date(), '%B %d, %Y')`"
+title: Title
+subtitle: Subtitle
+output: 
+ html_notebook: 
+  toc:             true
+  toc_float:       false
+  fig_caption:     true
+  highlight:       tango
+  code_folding:    hide
+  df_print:        paged
+  section_divs:    true
+  number_sections: true
+  theme:           cosmo
+---
+
+---
+
+**Description:** 
+
+---
+
+## Load Packages
+```{r Load Packages, echo = FALSE, warning = TRUE, message = TRUE}
+  packages <- c("tidyverse", "stringr", "readxl")  # List of packages to load
+  n_packages <- length(packages)  # Count how many packages are required
+  
+  # Load packages
+  for (n in 1:n_packages) {
+      cat("Loading Library #", n, " of ", n_packages, "... Currently Loading: ", packages[n],
+          "\n", sep = "")
+      lib_load <- paste("library(\"", packages[n], "\")", sep = "")  # Create string of text for loading each library
+      eval(parse(text = lib_load))  # Evaluate the string to load the library
+  }
+```
+
+
