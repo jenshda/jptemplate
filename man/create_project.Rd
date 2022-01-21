@@ -7,22 +7,35 @@
 create_project(
   title,
   subtitle = NULL,
+  author = NULL,
   gitignore = FALSE,
   readme = TRUE,
   rmarkdown = TRUE,
   folders = TRUE
 )
 }
-\description{
-This function will insert the R project template into the current R project template folder
-}
-\details{
-* title        = 'the name of the project' \n
-* subtitle     = 'the subtitle of the project' \n
-* gitignore    = Set to TRUE if you want to ignore the gitignore file \n
-* readme     = FALSE disables the creation of a template readme file \n
-* rmarkdown  = FALSE disables the creation of a template rmarkdown file \n
-* folders    = FALSE disables the creation of folders \n
+\arguments{
+\item{title}{a mandatory character input of 'the name of the project'.}
 
-It's callback is at: inst/rstudio/templates/project/create_project.dcf
+\item{subtitle}{an optional character input of 'the subtitle of the project'.}
+
+\item{author}{an optional character input of 'the project author'.}
+
+\item{gitignore}{logical. Set to \code{TRUE} if you want to ignore the \code{.gitignore} file.}
+
+\item{readme}{logical. \code{FALSE} disables the creation of a template \code{README.md} file.}
+
+\item{rmarkdown}{logical. \code{FALSE} disables the creation of a template \code{.Rmd} file.}
+
+\item{folders}{logical. \code{FALSE} disables the creation of folders.}
+}
+\description{
+This function will insert the R project template into the current R project
+template folder including a default set of sub-folders, a \code{README.md} template file,
+ and the default \code{.Rmd} file. All files will automatically contain the project name
+ used in the function.
+}
+\examples{
+create_project("Project_Name", subtitle = "Project_Subtitle", gitignore = TRUE, rmarkdown = FALSE)
+
 }

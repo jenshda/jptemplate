@@ -13,5 +13,3 @@ Widget: CheckboxInput
 Label: Create .gitignore
 Default: On
 Position: right
-load_libraries: TRUE
-libraries: jptemplate
