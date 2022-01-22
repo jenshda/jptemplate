@@ -40,27 +40,25 @@ create_project <-
     }
 
     if(readme == "TRUE"){
+
       insert2 <- function(author){
         if(missing(author)){
-          writeLines(c(
-            paste0("author: NO_AUHTOR")))
-        } else {
-          writeLines(c(
-            paste0("author: ", author)))
+          ""
+        } else {writeLines(c(author))
         }
       }
-      author_n <- if(!is.null(author)) {
+      author_n <- capture.output(if(!is.null(author)) {
         insert2(author)
       } else {
-        insert2(author)
-      }
+        cat("NO_AUTHOR")
+      })
 
       writeLines(c(
         "",
         "#       README FILE ",
         "---",
         paste0("- `Author:` ", author_n),
-        paste0("- `Copyright:` (c) ", author_n, "(", format(Sys.Date(), '%Y'), ")"),
+        paste0("- `Copyright:` (c) ", author_n, " (", format(Sys.Date(), '%Y'), ")"),
         paste0("- `Script Name:` ", title, ".r"),
         paste0("- `Date:` ", format(Sys.Date(), '%B %d, %Y')),
         "---",
@@ -77,6 +75,7 @@ create_project <-
 
 if(rmarkdown == "TRUE"){
 
+  # Function for title and subtitle
   insert <- function(title, subtitle){
     if(missing(subtitle)){
       writeLines(c(
@@ -84,34 +83,31 @@ if(rmarkdown == "TRUE"){
     } else {
       writeLines(c(
         paste0("title: ", title),
-        paste0("subtitle: ", subtitle)
-      )
-      )
+        paste0("subtitle: ", subtitle)))
     }}
-
-  insert2 <- function(author){
-    if(missing(author)){
-      writeLines(c(
-        paste0("author: NO_AUHTOR")))
-    } else {
-      writeLines(c(
-        paste0("author: ", author)))
-    }
-  }
-  author_n <- if(!is.null(author)) {
-    insert2(author)
-  } else {
-    insert2(author)
-  }
-
-  writeLines(c(
-    "---",
-    author_n,
-    if(!is.null(subtitle)) {
+    title_n <- capture.output(if(!is.null(subtitle)) {
       insert(title, subtitle)
     } else {
       insert(title)
-    },
+    })
+
+    # Function for author
+    insert2 <- function(author){
+      if(missing(author)){
+        ""
+      } else {writeLines(c(author))
+      }
+    }
+    author_n <- capture.output(if(!is.null(author)) {
+      insert2(author)
+    } else {
+      cat("NO_AUTHOR")
+    })
+
+  writeLines(c(
+    "---",
+    title_n,
+    paste0("author: ", author_n),
     paste0("copyright: (c) ", author_n, " (", format(Sys.Date(), '%Y'), ")"),
     paste0("filename: ", title, ".Rmd"),
     paste0("date: ", format(Sys.Date(), '%B %d, %Y')),
@@ -196,8 +192,8 @@ if (folders == "TRUE"){
   ifelse(!dir.exists("Scripts/Modelling"),
          dir.create("Scripts/Modelling", recursive = TRUE),
          "Folder exists already")
-  ifelse(!dir.exists("Scripts/Production"),
-         dir.create("Scripts/Production", recursive = TRUE),
+  ifelse(!dir.exists("Scripts/Functions"),
+         dir.create("Scripts/Functions", recursive = TRUE),
          "Folder exists already")
   ifelse(!dir.exists("lib"),
          dir.create("lib", recursive = TRUE), "Folder exists already")
