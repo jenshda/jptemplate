@@ -25,6 +25,10 @@ create_project <-
     # In the project template we've added 2 choices for the user:
     # * One allows them to select if the project will have a .gitignore file
 
+
+
+
+
     # Check .gitignore argument
     if(gitignore == "TRUE") {
       git_ignores <-
@@ -58,12 +62,12 @@ create_project <-
         "#       README FILE ",
         "---",
         paste0("- `Author:` ", author_n),
-        paste0("- `Copyright:` (c) ", author_n, " (", format(Sys.Date(), '%Y'), ")"),
-        paste0("- `Script Name:` ", title, ".r"),
-        paste0("- `Date:` ", format(Sys.Date(), '%B %d, %Y')),
+        paste0("Email :: jens.halford@ramboll.com ", " (", format(Sys.Date(), '%Y'), ")"),
+        paste0("`Script Name ::` ", title, ".r"),
+        paste0("`Date ::` ", format(Sys.Date(), '%B %d, %Y')),
         "---",
         "",
-        "**Script Description**:",
+        "**Description** ::",
         "",
         "",
         "**Notes**:",
@@ -108,7 +112,7 @@ if(rmarkdown == "TRUE"){
     "---",
     title_n,
     paste0("author: ", author_n),
-    paste0("copyright: (c) ", author_n, " (", format(Sys.Date(), '%Y'), ")"),
+    paste0("email: jens.halford@ramboll.com"),
     paste0("filename: ", title, ".Rmd"),
     paste0("date: ", format(Sys.Date(), '%B %d, %Y')),
     "output: ",
@@ -126,7 +130,7 @@ if(rmarkdown == "TRUE"){
     "",
     "---",
     "",
-    "**Description:** ",
+    "**Description** :: ",
     "",
     "---",
     "",
@@ -143,13 +147,10 @@ if(rmarkdown == "TRUE"){
     "    manip.folder     <- file.path(data.folder,    \"Manipulated Datasets\")",
     "    final.folder     <- file.path(data.folder,    \"Final Datasets\")",
     "  scripts.folder     <- file.path(\"Scripts\")",
-    "    analysis.folder  <- file.path(scripts.folder, \"Analysis\")",
-    "    functions.folder <- file.path(scripts.folder, \"Functions\")",
-    "    modelling.folder <- file.path(scripts.folder, \"Modelling\")",
+    "    subscripts.folder  <- file.path(scripts.folder, \"Subscripts\")",
     "  output.folder      <- file.path(\"Output\")",
-    "    plot.folder      <- file.path(output.folder,  \"Data\")",
-    "    table.folder     <- file.path(output.folder,  \"Data\")",
-    "    markdown.folder  <- file.path(output.folder,  \"Data\")",
+    "    graph.folder      <- file.path(output.folder,  \"Graphs\")",
+    "    table.folder     <- file.path(output.folder,  \"Tables\")",
     "  library.folder     <- file.path(\"lib\")",
     "",
     "  # Example",
@@ -182,23 +183,14 @@ if (folders == "TRUE"){
   ifelse(!dir.exists("Data/Final Datasets"),
          dir.create("Data/Final Datasets", recursive = TRUE),
          "Folder exists already")
-  ifelse(!dir.exists("Output/Plots"),
-         dir.create("Output/Plots", recursive = TRUE),
+  ifelse(!dir.exists("Output/Graphs"),
+         dir.create("Output/Graphs", recursive = TRUE),
          "Folder exists already")
   ifelse(!dir.exists("Output/Tables"),
          dir.create("Output/Tables", recursive = TRUE),
          "Folder exists already")
-  ifelse(!dir.exists("Output/Markdown"),
-         dir.create("Output/Markdown", recursive = TRUE),
-         "Folder exists already")
-  ifelse(!dir.exists("Scripts/Analysis"),
-         dir.create("Scripts/Analysis", recursive = TRUE),
-         "Folder exists already")
-  ifelse(!dir.exists("Scripts/Modelling"),
-         dir.create("Scripts/Modelling", recursive = TRUE),
-         "Folder exists already")
-  ifelse(!dir.exists("Scripts/Functions"),
-         dir.create("Scripts/Functions", recursive = TRUE),
+  ifelse(!dir.exists("Scripts/Subscripts"),
+         dir.create("Scripts/Subscripts", recursive = TRUE),
          "Folder exists already")
   ifelse(!dir.exists("lib"),
          dir.create("lib", recursive = TRUE), "Folder exists already")
