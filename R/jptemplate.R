@@ -61,7 +61,7 @@ create_project <-
         "",
         "#       README FILE ",
         "---",
-        paste0("- `Author:` ", author_n),
+        paste0("`Author:` ", author_n),
         paste0("Email :: jens.halford@ramboll.com ", " (", format(Sys.Date(), '%Y'), ")"),
         paste0("`Script Name ::` ", title, ".r"),
         paste0("`Date ::` ", format(Sys.Date(), '%B %d, %Y')),
